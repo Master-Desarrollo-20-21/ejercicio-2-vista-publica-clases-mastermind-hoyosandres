@@ -1,0 +1,55 @@
+@startuml
+class Mastermind {
+    void Jugar()
+}
+
+class Board{
+    +Board(int numIntentos);
+    +void Start()
+    +void PropuseCombination(Combination c)
+    +void Resume()
+    +Mostrar();
+}
+
+class Combination{
+    +Combination()
+    +Result Comparar(Combination c)
+    +Combination Recoger()
+    +void Mostrar()
+}
+
+class SecretCombination{
+    +Combination Recoger()
+    +void Mostrar()
+}
+
+
+class Menu {
+    +Menu()
+    +int GetOption()
+}
+class Color {
+    +Color(char c)
+    +bool EsIgual(Color c)
+    +Color Recoger()
+    +Mostrar()
+}
+Class Attempt {
+    +void Mostrar()
+}
+abstract Result {
+    +void MostrarWhite()
+    +void MostrarBlack()
+}
+
+
+Board *-- SecretCombination
+Mastermind *-- Board
+Mastermind ---> Menu
+Combination <|-- SecretCombination
+Combination  *-- "4" Color
+Board "1"  *-- "10" Attempt
+Attempt *-- Combination
+Combination ---> Result
+
+@enduml
